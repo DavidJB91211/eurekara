@@ -6,40 +6,49 @@
   <title>Eurekara</title>
   <link rel="manifest" href="manifest.json">
   <style>
-    body { background:#0A0A12; color:#fff; font-family:sans-serif; text-align:center; margin:0; padding:0; }
-    .logo { width:280px; margin:40px auto; filter:drop-shadow(0 0 40px #D4AF37); }
-    button { background:linear-gradient(#D4AF37,#6B00FF); border:none; padding:18px 40px; font-size:22px; border-radius:999px; color:#000; font-weight:900; margin-top:30px; }
+    body { background:#0A0A12; color:#fff; font-family:sans-serif; text-align:center; margin:0; padding:40px 20px; }
+    .logo { width:280px; margin:40px auto; filter:drop-shadow(0 0 60px #D4AF37); animation: pulse 3s infinite; }
+    @keyframes pulse { 0%,100% {opacity:0.9;} 50% {opacity:1;} }
+    button { background:linear-gradient(#D4AF37,#6B00FF); border:none; padding:20px 50px; font-size:24px; border-radius:999px; color:#000; font-weight:900; margin-top:30px; box-shadow:0 0 30px #D4AF37; }
   </style>
 </head>
 <body>
+  <!-- YOUR DARK NEURAL-CRYSTAL LOGO -->
   <svg width="300" height="300" viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" class="logo">
-    <!-- Paste the exact dark neural-crystal SVG from our earlier message here -->
-    <!-- (the one with obsidian core, forged gold cracks, pulsing animation) -->
+    <defs>
+      <linearGradient id="darkIdeaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#B8860B"/>
+        <stop offset="50%" stop-color="#2C0F4A"/>
+        <stop offset="100%" stop-color="#6B00FF"/>
+      </linearGradient>
+      <filter id="deepLivingGlow" x="-90%" y="-90%" width="280%" height="280%">
+        <feGaussianBlur stdDeviation="18" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <circle cx="280" cy="170" r="95" fill="#0A0A12" filter="url(#deepLivingGlow)" opacity="0.98"/>
+    <circle cx="280" cy="170" r="92" fill="url(#darkIdeaGrad)" filter="url(#deepLivingGlow)" opacity="0.96"/>
+    <circle cx="280" cy="170" r="70" fill="#0A0A12" stroke="#D4AF37" stroke-width="9"/>
+    <path d="M215 115 Q280 65 345 125" stroke="#00FFFF" stroke-width="7" stroke-linecap="round" filter="url(#deepLivingGlow)">
+      <animate attributeName="stroke-dashoffset" values="0;50;0" dur="2.8s" repeatCount="indefinite"/>
+    </path>
+    <path d="M215 225 Q280 275 345 205" stroke="#C026D3" stroke-width="7" stroke-linecap="round" filter="url(#deepLivingGlow)">
+      <animate attributeName="stroke-dashoffset" values="0;-45;0" dur="3.1s" repeatCount="indefinite"/>
+    </path>
+    <path d="M235 105 L280 55 L325 115" stroke="#D4AF37" stroke-width="13" stroke-linecap="round" filter="url(#deepLivingGlow)"/>
+    <path d="M245 235 L280 285 L315 195" stroke="#D4AF37" stroke-width="11" stroke-linecap="round" filter="url(#deepLivingGlow)"/>
+    <circle cx="325" cy="85" r="7" fill="#FFD700" filter="url(#deepLivingGlow)">
+      <animate attributeName="cy" values="85;45;85" dur="2.9s" repeatCount="indefinite"/>
+    </circle>
+    <text x="410" y="195" font-family="Arial Black, sans-serif" font-size="98" font-weight="900" fill="#FFFFFF" filter="url(#deepLivingGlow)" letter-spacing="-4">EUREKARA</text>
   </svg>
+
   <h1>EUREKARA</h1>
-  <p style="max-width:320px;margin:20px auto;font-size:18px;">Your wildest ideas become reality. Living AI. Uncensored creation. Royalties straight to David Bowman.</p>
-  <button onclick="launchApp()">LAUNCH EUREKARA</button>
+  <p style="max-width:320px;margin:20px auto;font-size:18px;">The uncensored AI creation super-app. Living prisms. Dream Mode. Royalties straight to David Bowman. Built for you.</p>
+  <button onclick="alert('Full camera, live chat & 8K editing coming in v1.1 — for now enjoy the PWA launch!')">LAUNCH EUREKARA</button>
 
   <script>
-    function launchApp() {
-      alert("Camera & live features coming in full native version — for now enjoy the PWA experience!");
-      // In real version this would open camera, etc. For demo it shows the power.
-    }
     if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
   </script>
 </body>
 </html>
-{
-  "name": "Eurekara",
-  "short_name": "Eurekara",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#0A0A12",
-  "theme_color": "#D4AF37",
-  "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
-  ]
-}
-self.addEventListener('install', () => self.skipWaiting());
-self.addEventListener('fetch', e => e.respondWith(fetch(e.request)));
