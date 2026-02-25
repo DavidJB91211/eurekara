@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eurekara</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body { background:#0A0A12; color:#fff; font-family:sans-serif; text-align:center; margin:0; padding:0; }
+    .logo { width:280px; margin:40px auto; filter:drop-shadow(0 0 40px #D4AF37); }
+    button { background:linear-gradient(#D4AF37,#6B00FF); border:none; padding:18px 40px; font-size:22px; border-radius:999px; color:#000; font-weight:900; margin-top:30px; }
+  </style>
+</head>
+<body>
+  <svg width="300" height="300" viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" class="logo">
+    <!-- Paste the exact dark neural-crystal SVG from our earlier message here -->
+    <!-- (the one with obsidian core, forged gold cracks, pulsing animation) -->
+  </svg>
+  <h1>EUREKARA</h1>
+  <p style="max-width:320px;margin:20px auto;font-size:18px;">Your wildest ideas become reality. Living AI. Uncensored creation. Royalties straight to David Bowman.</p>
+  <button onclick="launchApp()">LAUNCH EUREKARA</button>
+
+  <script>
+    function launchApp() {
+      alert("Camera & live features coming in full native version — for now enjoy the PWA experience!");
+      // In real version this would open camera, etc. For demo it shows the power.
+    }
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+  </script>
+</body>
+</html>
+{
+  "name": "Eurekara",
+  "short_name": "Eurekara",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0A0A12",
+  "theme_color": "#D4AF37",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('fetch', e => e.respondWith(fetch(e.request)));
